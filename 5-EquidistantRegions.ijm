@@ -1,7 +1,20 @@
 
+/*																												*
+ * 																												*
+ * this macro will slice nucleus into 5 equodistant slices and measure the average intensity of each area semi-automatically 	*
+ * 																												*
+ * 																												*
+ */
+ 
+ 
 // must have two folders in the same path: concentric slice & intensityAuto
 
-path = "/Users/gokce/Desktop/line scan analysis/H3K27me3/H3K27me3 DONOR 4/H3K27me3 CD38/CONCENTRIC/";
+// save Dapi-stack as: C1-01.tif, C1-02.tif, etc in "concentric slice"
+
+// save protein-of-interest-stack as: C2-01.tif, C2-02.tif, etc in "concentric slice"
+
+
+path = "/Users/gokce/Desktop/line scan analysis/";
 list = getFileList(path + "concentric slice/");
 N=list.length/2;
 
@@ -9,20 +22,10 @@ N=list.length/2;
 h=35
 
 
-
-
-/*																												*
- * 																												*
- * this macro will slice nucleus into 5 equodistant slices and measure the average intensity of each area semi-automatically 	*
- * 																												*
- * 																												*
- */
-
 TableName="[My Table]";
 TableNameWindow="My Table";
 run("Table...", "name="+TableName+" width=650 height=250");
 print(TableName,"\\Headings:nucleus\tROI1\tROI2\tROI3\tROI4\tROI5");
-
 
 
 	for (h=1; h<=N; h++) {
@@ -159,7 +162,6 @@ print(TableName,h+"\t"+IntN[0]+"\t"+IntN[1]+"\t"+IntN[2]+"\t"+IntN[3]+"\t"+IntN[
 	}
 		
 	  
-
 waitForUser("confirm all steps are done correctly");
 
 roiManager("Deselect");
